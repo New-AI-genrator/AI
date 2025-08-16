@@ -9,16 +9,15 @@
     "lint": "next lint",
     "vercel-build": "npm install --include=dev && npm run build"
   },
-  "dependencies": {
+  "devDependencies": {
     "typescript": "^5.2.2",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@auth/prisma-adapter": "^2.10.0",
+    "@types/uuid": "^10.0.0",
     "@prisma/client": "^5.22.0",
     "@react-email/render": "^1.2.0",
     "@types/knex": "^0.15.2",
-    "@types/uuid": "^10.0.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "cookie": "^1.0.2",
@@ -43,7 +42,7 @@
     "uuid": "^11.1.0",
     "zod": "^3.21.4"
   },
-  "devDependencies": {
+  "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.10",
