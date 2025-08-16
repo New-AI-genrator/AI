@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "now-build": "next build",
-    "vercel-build": "npm install --production=false && npm install typescript @types/react @types/node @types/react-dom && next build"
+    "vercel-build": "npm install typescript @types/react @types/node @types/react-dom --no-save && npm run build"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
