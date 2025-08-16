@@ -5,14 +5,12 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": { 
-        "distDir": ".next",
-        "installCommand": "npm install --include=dev"
+        "distDir": ".next"
       }
     }
   ],
-  "build": {
-    "env": {
-      "NODE_VERSION": "18"
-    }
-  }
+  "buildCommand": "npm install && npm run build",
+  "installCommand": "npm install --include=dev",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
 }

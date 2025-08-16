@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsc && next build",
+    "build": "npm install typescript @types/react @types/node @types/react-dom --no-save && tsc && next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "npm install --include=dev && npm run build"
