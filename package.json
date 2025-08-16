@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "npm install --include=dev && next build",
     "start": "next start",
-    "lint": "next lint",
-    "now-build": "npm install typescript @types/react @types/node @types/react-dom --no-save && next build"
+    "lint": "next lint"
   },
   "devDependencies": {
     "typescript": "^5.2.2",

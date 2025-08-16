@@ -7,7 +7,7 @@
       "config": {
         "distDir": ".next",
         "installCommand": "npm install --include=dev",
-        "buildCommand": "npm install typescript @types/react @types/node @types/react-dom --no-save && next build"
+        "buildCommand": "next build"
       }
     }
   ]
