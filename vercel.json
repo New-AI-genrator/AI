@@ -3,10 +3,13 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": ".next"
+      }
     }
   ],
-  "buildCommand": "npm install && npm run build",
+  "buildCommand": "npm install typescript @types/react @types/node @types/react-dom && next build",
   "installCommand": "npm install",
   "framework": "nextjs"
 }

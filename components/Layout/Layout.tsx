@@ -4,6 +4,7 @@ import Navbar from '../Navbar';
 import AIAssistant from '../AIAssistant';
 import Footer from '../Footer/Footer';
 import { ComparisonProvider } from '@/contexts/ComparisonContext';
+import GoogleAnalytics from '../GoogleAnalytics';
 
 // Dynamically import ComparisonBar to avoid SSR issues with localStorage
 const ComparisonBar = dynamic(
@@ -17,7 +18,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <ComparisonProvider>
+    <>
+      <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
+      <ComparisonProvider>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         <Navbar />
         <main className="container mx-auto px-4 py-8 flex-grow">
@@ -27,7 +30,8 @@ const Layout = ({ children }: LayoutProps) => {
         <AIAssistant />
         <ComparisonBar />
       </div>
-    </ComparisonProvider>
+      </ComparisonProvider>
+    </>
   );
 };
 
