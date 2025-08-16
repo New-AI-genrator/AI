@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { corsMiddleware } from '@/lib/cors';
 
+// Domain redirect configuration
+const OLD_DOMAIN = 'aivault-nu.vercel.app';
+const NEW_DOMAIN = 'aitoolkit.vercel.app';
+
 // Rate limiting configuration
 const RATE_LIMIT = 100; // Default requests per window
 const AUTH_RATE_LIMIT = 5; // Stricter limit for auth endpoints
@@ -52,6 +56,14 @@ function validateCsrfToken(request: NextRequest): boolean {
 }
 
 export async function middleware(request: NextRequest) {
+  // Handle domain redirect
+  const host = request.headers.get('host') || '';
+  if (host === OLD_DOMAIN) {
+    const url = new URL(request.url);
+    url.hostname = NEW_DOMAIN;
+    return NextResponse.redirect(url.toString(), 301); // 301 Moved Permanently
+  }
+
   // Handle CORS first
   const corsResponse = corsMiddleware(request);
   if (corsResponse) {
