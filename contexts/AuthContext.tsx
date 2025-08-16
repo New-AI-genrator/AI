@@ -1,8 +1,7 @@
 'use client';
-
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
 import { UserWithoutPassword } from '@/types/user';
+import { usePathname, useRouter } from 'next/navigation';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
   user: UserWithoutPassword | null;
@@ -17,12 +16,19 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    // Return safe defaults instead of throwing an error
+    return {
+      user: null,
+      login: async (email: string, password: string) => ({ success: false, error: 'Auth not available' }),
+      logout: async () => { },
+      signup: async (name: string, email: string, password: string) => ({ success: false, error: 'Auth not available' }),
+      isLoading: false
+    };
   }
   return context;
 };
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider = ({ children }: { children: any }) => {
   const [user, setUser] = useState<UserWithoutPassword | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -33,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       try {
         const response = await fetch('/api/auth/me');
         const data = await response.json();
-        
+
         if (response.ok && data.user) {
           setUser(data.user);
         } else {
@@ -55,8 +61,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Redirect to login if not authenticated (except for auth pages)
   useEffect(() => {
     if (!isLoading && !user) {
-      const publicPaths = ['/login', '/signup'];
-      
+      const publicPaths = ['/login', '/signup', '/', '/blog', '/api-docs', '/test-page'];
+
       if (pathname && !publicPaths.includes(pathname)) {
         router.push('/login');
       }

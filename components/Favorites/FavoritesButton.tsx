@@ -12,23 +12,23 @@ interface FavoritesButtonProps {
   className?: string;
 }
 
-const FavoritesButton: React.FC<FavoritesButtonProps> = ({
+const FavoritesButton = ({
   tool,
   size = 'md',
   showLabel = true,
-  className = '',
-}) => {
+  className = ''
+}: FavoritesButtonProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
   const [isClient, setIsClient] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   
-  const sizeClasses = {
+  const sizeClasses: { [key: string]: string } = {
     sm: 'text-sm',
     md: 'text-base',
     lg: 'text-lg',
   };
 
-  const iconClasses = {
+  const iconClasses: { [key: string]: string } = {
     sm: 'w-3 h-3',
     md: 'w-4 h-4',
     lg: 'w-5 h-5',

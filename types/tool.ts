@@ -4,6 +4,7 @@ export interface Tool {
   description: string;
   url: string;
   logo?: string;
+  favicon?: string;
   category: string;
   subcategory: string;
   pricing: 'Free' | 'Freemium' | 'Paid' | 'Contact' | 'Open Source' | string;

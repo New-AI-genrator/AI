@@ -1,0 +1,157 @@
+AI Tools Directory
+2025
+Home
+Favorites
+Categories
+🤝
+AI for Nonprofits & Social Impact
+Fundraising & Donor Management
+Program Impact Analysis
+Volunteer Coordination
+🌾
+AI in Agriculture & Food Security
+Precision Farming
+Crop Monitoring
+Livestock Management
+🌟
+AI for Personal Development
+Habit Building
+Skill Development
+Goal Setting & Tracking
+🎮
+AI in Entertainment & Gaming
+Procedural Content Generation
+NPC Behavior & Dialogue
+Player Experience Personalization
+🏠
+AI for Smart Homes & IoT
+Home Automation
+Energy Management
+Security & Surveillance
+🏛️
+AI Government & Public Services
+Policy Analysis
+Citizen Services
+Urban Planning
+Compare
+New Tools
+Blog
+Community
+API
+Docs
+Suggest a Tool
+
+AI Tools Directory API
+Programmatic access to our curated collection of AI tools. Build amazing applications with our comprehensive API.
+
+Getting Started
+The AI Tools Directory API provides programmatic access to our database of AI tools. All API endpoints return JSON-encoded responses and use standard HTTP response codes.
+
+Base URL
+https://ai-vault-web.vercel.app/api
+
+Authentication
+Currently, the API is open and doesn't require authentication. However, we recommend including a User-Agent header with your application name and contact information for tracking purposes.
+
+Endpoints
+GET
+/api/tools
+Returns a paginated list of AI tools. Supports filtering, searching, and sorting.
+
+Query Parameters:
+Parameter	Type	Description
+category	string	Filter by category name
+search	string	Search in name, description, and tags
+limit	number	Number of results per page (default: 100, max: 100)
+offset	number	Pagination offset (default: 0)
+Example Request:
+bash
+Copy
+curl "https://ai-vault-web.vercel.app/api/tools?category=Writing&limit=5"
+Example Response:
+json
+Copy
+{
+  "data": [
+    {
+      "id": "example-tool",
+      "name": "Example AI Tool",
+      "description": "An amazing AI tool that does incredible things",
+      "url": "https://example.com",
+      "category": "Writing",
+      "subcategory": "Content Generation",
+      "pricing": "Freemium",
+      "tags": ["AI", "Writing", "Productivity"],
+      "rating": 4.5
+    }
+  ],
+  "meta": {
+    "total": 1,
+    "limit": 5,
+    "offset": 0,
+    "hasMore": false
+  }
+}
+GET
+/api/tools/:id
+Returns detailed information about a specific AI tool.
+
+Path Parameters:
+Parameter	Type	Description
+id	string	The ID of the tool to retrieve
+Example Request:
+bash
+Copy
+curl "https://ai-vault-web.vercel.app/api/tools/example-tool"
+Example Response:
+json
+Copy
+{
+  "data": {
+    "id": "example-tool",
+    "name": "Example AI Tool",
+    "description": "An amazing AI tool that does incredible things",
+    "url": "https://example.com",
+    "category": "Writing",
+    "subcategory": "Content Generation",
+    "pricing": "Freemium",
+    "tags": ["AI", "Writing", "Productivity"],
+    "rating": 4.5,
+    "features": ["Feature 1", "Feature 2", "Feature 3"],
+    "pricingTiers": [
+      {
+        "name": "Free",
+        "price": 0,
+        "features": ["Basic features", "Limited usage"]
+      },
+      {
+        "name": "Pro",
+        "price": 19.99,
+        "features": ["All features", "Higher limits", "Priority support"]
+      }
+    ]
+  }
+}
+Rate Limiting
+The API is rate limited to 100 requests per minute per IP address. If you need higher limits, please contact us at huzaifakarim612@gmail.com.
+
+Error Handling
+The API uses standard HTTP status codes to indicate success or failure of an API request.
+
+Status Code	Description
+200	Success
+400	Bad Request - Invalid parameters
+404	Not Found - Resource doesn't exist
+429	Too Many Requests - Rate limit exceeded
+500	Internal Server Error - Something went wrong
+Need Help?
+If you have any questions or need assistance with the API, please contact us at
+
+huzaifakarim612@gmail.com
+We're here to help you build amazing applications with our API!
+
+© 2025 AI Tools Directory. All rights reserved.
+
+Privacy Policy
+Terms of Service
+Contact Us

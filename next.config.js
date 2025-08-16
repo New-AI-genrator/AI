@@ -1,5 +1,15 @@
-﻿/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['images.unsplash.com', 'via.placeholder.com'],
+  },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+    };
+    return config;
+  },
   async headers() {
     return [
       {

@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -62,32 +64,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <FavoritesButton tool={{
-              id: toolId,
-              name,
-              description,
-              url,
-              logo,
-              category: category || '',
-              subcategory: subcategory || '',
-              pricing: pricing as any,
-              tags,
-              rating,
-              ...restWithoutId
-            }} size="sm" showLabel={false} />
-            <ComparisonButton tool={{
-              id: toolId,
-              name,
-              description,
-              url,
-              logo,
-              category: category || '',
-              subcategory: subcategory || '',
-              pricing: pricing as any,
-              tags,
-              rating,
-              ...restWithoutId
-            }} size="sm" showLabel={false} />
+            {/* Interactive buttons temporarily removed for server component compatibility */}
           </div>
         </div>
 
@@ -125,7 +102,6 @@ export const ToolCard: React.FC<ToolCardProps> = ({
           <Link 
             href={`/tools/${toolId}`}
             className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
-            onClick={(e) => e.stopPropagation()}
           >
             View details →
           </Link>

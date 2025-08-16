@@ -83,12 +83,6 @@ const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           {category ? 'Similar Tools' : 'Recommended Tools'}
         </h2>
-        <button 
-          onClick={() => window.location.reload()}
-          className="flex items-center text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
-        >
-          <FaRandom className="mr-1" /> Refresh
-        </button>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

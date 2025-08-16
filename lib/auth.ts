@@ -1,7 +1,7 @@
 import { sign, verify } from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { SignJWT, jwtVerify } from 'jose';
-import { User, UserWithoutPassword } from '@/types/user';
+import { UserWithoutPassword } from '@/types/user';
 
 // Type for cookie options
 interface CookieOptions {
@@ -67,7 +67,7 @@ export async function getCurrentUser(): Promise<UserWithoutPassword | null> {
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
     
-    return payload as UserWithoutPassword;
+    return payload as unknown as UserWithoutPassword;
   } catch (error) {
     console.error('Error verifying token:', error);
     return null;
@@ -78,7 +78,7 @@ export async function verifyToken(token: string): Promise<UserWithoutPassword | 
   try {
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
-    return payload as UserWithoutPassword;
+    return payload as unknown as UserWithoutPassword;
   } catch (error) {
     console.error('Error verifying token:', error);
     return null;

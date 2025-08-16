@@ -62,8 +62,8 @@ export const rateLimitByIp = (req: NextRequest) => {
     windowMs: 15 * 60 * 1000, // 15 minutes
     message: 'Too many requests from this IP, please try again later',
     identifier: (req: NextRequest) => {
-      // Get the IP address from the request
-      const ip = req.ip || req.headers.get('x-forwarded-for') || 'unknown';
+      // Get the IP address from the request headers (Next.js 15 compatible)
+      const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
       return `ip:${Array.isArray(ip) ? ip[0] : ip}`;
     },
   });

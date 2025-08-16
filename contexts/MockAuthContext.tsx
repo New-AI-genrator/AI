@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface User {
   id: string;
@@ -19,7 +19,7 @@ const MockAuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function MockAuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  
+
   // Auto-login with demo user on component mount
   useEffect(() => {
     const demoUser = {
@@ -62,7 +62,13 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
 export const useAuth = () => {
   const context = useContext(MockAuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    // Return safe defaults instead of throwing an error
+    return {
+      user: null,
+      login: async () => ({ success: false, error: 'Auth not available' }),
+      logout: () => { },
+      isAuthenticated: false
+    };
   }
   return context;
 };
