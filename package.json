@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm install --include=dev && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "vercel-build": "chmod +x ./scripts/build.sh && ./scripts/build.sh"
+    "lint": "next lint"
   },
   "devDependencies": {
     "typescript": "^5.2.2",

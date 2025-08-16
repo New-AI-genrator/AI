@@ -3,14 +3,14 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": ".next",
-        "installCommand": "npm install --include=dev && npm install typescript @types/react @types/node @types/react-dom --no-save",
-        "buildCommand": "next build"
-      }
+      "use": "@vercel/next"
     }
   ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
