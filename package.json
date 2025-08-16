@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/ensure-ts.js",
-    "build": "next build",
+    "build": "npm install --no-save typescript @types/react @types/node @types/react-dom && next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "npm install --include=dev && npm run build"
