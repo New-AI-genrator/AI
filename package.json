@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/ensure-ts.js && next build",
+    "prebuild": "node scripts/ensure-ts.js",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "npm install --include=dev && npm run build"
