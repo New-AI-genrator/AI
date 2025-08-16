@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": ".next"
-      }
+      "use": "@vercel/next"
     }
   ],
   "build": {
@@ -20,7 +17,5 @@
       "dest": "/"
     }
   ],
-  "buildCommand": "npm run vercel-build",
-  "installCommand": "npm install --include=dev",
   "framework": "nextjs"
 }
