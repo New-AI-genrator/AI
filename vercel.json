@@ -20,7 +20,7 @@
       "dest": "/"
     }
   ],
-  "buildCommand": "npm install --include=dev && npm install typescript @types/react @types/node @types/react-dom --no-save && next build",
-  "installCommand": "npm install",
+  "buildCommand": "npm run vercel-build",
+  "installCommand": "npm install --include=dev",
   "framework": "nextjs"
 }
