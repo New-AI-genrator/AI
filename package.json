@@ -4,16 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node vercel-build.js",
+    "prebuild": "npm install typescript @types/react @types/node @types/react-dom --no-save",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "vercel-build": "npm install --include=dev && npm run build"
   },
   "dependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^18.19.123",
-    "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.2.2",
+    "@types/node": "^20.6.0",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "@auth/prisma-adapter": "^2.10.0",
     "@prisma/client": "^5.22.0",
     "@react-email/render": "^1.2.0",
