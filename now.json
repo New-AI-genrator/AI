@@ -6,8 +6,8 @@
       "use": "@vercel/static-build",
       "config": {
         "distDir": ".next",
-        "installCommand": "npm install --include=dev typescript @types/react @types/node @types/react-dom",
-        "buildCommand": "next build"
+        "installCommand": "npm install --include=dev",
+        "buildCommand": "npm run now-build"
       }
     }
   ]
