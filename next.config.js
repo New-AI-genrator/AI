@@ -5,16 +5,16 @@ const nextConfig = {
   // Enable React Strict Mode
   reactStrictMode: true,
   
-  // Disable static exports since we're using server-side features
-  output: 'standalone',
+  // Enable static HTML export
+  output: 'export',
   
   // Image optimization
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com'],
-    unoptimized: true, // Disable Image Optimization API as it's not needed on Netlify
+    unoptimized: true, // Required for static export
   },
   
-  // Enable static HTML export
+  // Ensure trailing slashes for static export
   trailingSlash: true,
   
   // Webpack configuration
