@@ -16,12 +16,12 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Redirects for client-side routing
+# Handle client-side routing - all routes should be rewritten to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
+  force = true
 
 # Cache settings
 [[headers]]
