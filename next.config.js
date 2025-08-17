@@ -5,16 +5,17 @@ const nextConfig = {
   // Enable React Strict Mode
   reactStrictMode: true,
   
-  // Base path if your app is not served from the root
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  
-  // Asset prefix for CDN support
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  // Disable static exports since we're using server-side features
+  output: 'standalone',
   
   // Image optimization
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com'],
+    unoptimized: true, // Disable Image Optimization API as it's not needed on Netlify
   },
+  
+  // Enable static HTML export
+  trailingSlash: true,
   
   // Webpack configuration
   webpack: (config, { isServer }) => {
