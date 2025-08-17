@@ -1,13 +1,18 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { default as NextHead } from "next/head";
-import { categories } from "../data/categories";
-import { tools } from "../data/tools";
+import { GetStaticProps } from 'next';
 import CategoryCard from "../components/CategoryCard";
 import { ToolCard } from "../components/ToolCard";
 import SmartSearch from "../components/SmartSearch/SmartSearch";
 import type { Tool } from "../types/tool";
-export default function HomePage() {
+
+interface HomePageProps {
+  categories: any[];
+  tools: Tool[];
+}
+
+export default function HomePage({ categories = [], tools = [] }: HomePageProps) {
   const [search, setSearch] = useState("");
   const [pricing, setPricing] = useState<string[]>([]);
   const [minRating, setMinRating] = useState(0);
