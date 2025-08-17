@@ -7,52 +7,74 @@ import { Tool } from '@/types/tool';
 import FavoritesButton from './Favorites/FavoritesButton';
 import ComparisonButton from './Comparison/ComparisonButton';
 
-interface ToolCardProps extends Omit<Tool, 'id' | 'createdAt' | 'updatedAt'> {
-  url: string;
-  favicon?: string;
+interface ToolCardProps {
+  tool: Tool;
   className?: string;
 }
 
 export const ToolCard: React.FC<ToolCardProps> = ({
-  name,
-  category,
-  subcategory,
-  rating = 0,
-  description,
-  pricing,
-  tags = [],
-  url,
-  logo,
-  className = '',
-  ...rest
+  tool,
+  className = ''
 }) => {
+  // Return null or a placeholder if tool is undefined
+  if (!tool) {
+    console.warn('ToolCard received undefined tool prop');
+    return (
+      <div className={`bg-white rounded-lg shadow-md overflow-hidden ${className}`}>
+        <div className="p-4">
+          <div className="animate-pulse">
+            <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-gray-100 rounded w-1/2 mb-4"></div>
+            <div className="h-3 bg-gray-100 rounded w-full mb-2"></div>
+            <div className="h-3 bg-gray-100 rounded w-5/6"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  const {
+    name,
+    category,
+    subcategory,
+    rating = 0,
+    description,
+    pricing,
+    tags = [],
+    url,
+    logo,
+    favicon
+  } = tool;
   const categorySlug = category?.toLowerCase().replace(/\s+/g, "-") || '';
   const subcategorySlug = subcategory?.toLowerCase().replace(/\s+/g, "-") || "";
   const toolSlug = name.toLowerCase().replace(/\s+/g, "-");
-  // Extract id from rest if it exists, otherwise use the generated toolSlug
-  const { id: _, ...restWithoutId } = rest as any;
-  const toolId = (rest as any).id || toolSlug; // Use provided ID or generate from name
+  const toolId = tool.id || toolSlug; // Use provided ID or generate from name
   return (
     <div className={`group relative ${className}`}>
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-      <div className="relative bg-slate-800/90 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-slate-700/90 transition-all duration-300 transform hover:scale-[1.02]">
+      <div className="relative bg-slate-800/90 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-slate-700/90 transition-all duration-300 transform hover:scale-[1.02] h-full flex flex-col">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center space-x-2">
-              {logo && (
-                <div className="w-10 h-10 bg-white dark:bg-gray-700 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
+              {logo ? (
+                <div className="w-10 h-10 bg-white/10 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
                   <Image
                     src={logo}
                     alt={name}
                     width={32}
                     height={32}
                     className="object-contain p-1"
+                    unoptimized={logo.startsWith('http')}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.onerror = null;
                       target.src = '/placeholder-logo.svg';
                     }}
                   />
+                </div>
+              ) : (
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex-shrink-0 flex items-center justify-center text-white font-bold">
+                  {name.charAt(0).toUpperCase()}
                 </div>
               )}
               <div className="min-w-0">

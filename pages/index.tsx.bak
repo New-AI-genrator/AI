@@ -510,7 +510,17 @@ export default function HomePage({ categories = [], tools = [] }: HomePageProps)
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <ToolCard tool={tool} />
+                  <ToolCard
+                    name={tool.name}
+                    category={tool.category}
+                    subcategory={tool.subcategory}
+                    rating={tool.rating}
+                    description={tool.description}
+                    pricing={tool.pricing}
+                    tags={tool.tags}
+                    url={tool.url}
+                    favicon={tool.favicon}
+                  />
                 </div>
               ))}
             </div>

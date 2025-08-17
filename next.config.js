@@ -5,29 +5,29 @@ const nextConfig = {
   // Enable React Strict Mode
   reactStrictMode: true,
   
-  // Image optimization
+  // Image optimization - allow all domains
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   
-  // Enable trailing slashes for better URL handling
-  trailingSlash: false,
-  
   // Webpack configuration
-  webpack: (config, { isServer }) => {
-    // Fixes npm packages that depend on `fs` module
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-      };
-    }
-    
-    // Add support for TypeScript path aliases
+  webpack: (config) => {
+    // Configure path aliases
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, './'),
+      '@': path.resolve(__dirname, '.'),
+    };
+    
+    // Fixes npm packages that depend on `fs` module
+    config.resolve.fallback = {
+      fs: false,
+      path: false,
+      os: false,
     };
     
     return config;

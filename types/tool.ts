@@ -1,3 +1,11 @@
+export interface Category {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  count: number;
+}
+
 export interface Tool {
   id: string;
   name: string;

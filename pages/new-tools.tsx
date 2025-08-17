@@ -97,18 +97,8 @@ export default function NewToolsPage() {
             {filteredTools.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTools.map((tool, index) => (
-                  <div key={tool.name} style={{ animationDelay: `${index * 100}ms` }}>
-                    <ToolCard
-                      name={tool.name}
-                      category={tool.category}
-                      subcategory={tool.subcategory}
-                      rating={tool.rating}
-                      description={tool.description}
-                      pricing={tool.pricing}
-                      tags={tool.tags}
-                      url={tool.url}
-                      favicon={tool.favicon}
-                    />
+                  <div key={tool.id || tool.name} style={{ animationDelay: `${index * 100}ms` }}>
+                    <ToolCard tool={tool} />
                   </div>
                 ))}
               </div>
