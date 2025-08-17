@@ -12,11 +12,9 @@
 [build.processing]
   skip_processing = true
 
-# Required for Next.js 10+ image optimization
+# Next.js plugin - no inputs needed as we're using the latest version
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    enableStaticImages = true
 
 # Redirects for client-side routing
 [[redirects]]
