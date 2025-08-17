@@ -63,15 +63,18 @@ export async function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
   const isPreviewDomain = host.endsWith('.vercel.app') && !host.endsWith(PRODUCTION_DOMAIN);
   
-  // Skip redirect for static files, _next, and API routes
-  const isStaticAsset = 
+  // Skip middleware for static files, _next, and API routes
+  if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/static') ||
-    pathname.match(/\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$/);
-  
+    pathname.match(/\.(js|css|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot|json|webp|mp4|webm|mp3|wav|ogg|pdf)$/i)
+  ) {
+    return NextResponse.next();
+  }
+
   // Only redirect main page requests from preview domains
-  if (!isStaticAsset && (OLD_DOMAINS.includes(host) || isPreviewDomain)) {
+  if (OLD_DOMAINS.includes(host) || isPreviewDomain) {
     const url = new URL(request.url);
     url.hostname = PRODUCTION_DOMAIN;
     
