@@ -43,5 +43,3 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Cache-Control = "public, max-age=0, must-revalidate"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
