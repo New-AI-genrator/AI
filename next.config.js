@@ -5,17 +5,13 @@ const nextConfig = {
   // Enable React Strict Mode
   reactStrictMode: true,
   
-  // Enable static HTML export
-  output: 'export',
-  
   // Image optimization
   images: {
     domains: ['images.unsplash.com', 'via.placeholder.com'],
-    unoptimized: true, // Required for static export
   },
   
-  // Ensure trailing slashes for static export
-  trailingSlash: true,
+  // Enable trailing slashes for better URL handling
+  trailingSlash: false,
   
   // Webpack configuration
   webpack: (config, { isServer }) => {

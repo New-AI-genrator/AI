@@ -49,14 +49,14 @@ export default function TestPage({ categories = [], tools = [], error, importErr
   );
 }
 
-export const getStaticProps: GetStaticProps<TestPageProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   console.log('Loading test page data...');
   
   try {
-    // Use dynamic imports with type assertions
+    // Dynamically import the data files
     const categoriesModule = await import('../data/categories') as CategoriesModule;
     const toolsModule = await import('../data/tools') as ToolsModule;
-    
+
     // Handle both default and named exports with proper type checking
     const categories = (categoriesModule.categories || categoriesModule.default || []) as any[];
     const tools = (toolsModule.tools || toolsModule.default || []) as any[];
@@ -68,8 +68,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async () => {
         categories,
         tools,
         loadedAt: new Date().toISOString()
-      },
-      revalidate: 10 // Revalidate every 10 seconds for testing
+      }
     };
   } catch (error: unknown) {
     console.error('Error importing data files:', error);
@@ -85,8 +84,7 @@ export const getStaticProps: GetStaticProps<TestPageProps> = async () => {
         error: 'Failed to load data',
         importError: errorString,
         loadedAt: new Date().toISOString()
-      },
-      revalidate: 10
+      }
     };
   }
 };
