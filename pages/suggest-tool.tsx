@@ -104,7 +104,7 @@ export default function SuggestTool() {
           )}
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in-up {
           from {
             opacity: 0;
@@ -121,4 +121,4 @@ export default function SuggestTool() {
       `}</style>
     </>
   );
-} 
+}

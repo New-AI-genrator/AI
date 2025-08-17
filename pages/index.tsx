@@ -10,7 +10,46 @@ import type { Tool } from "../types/tool";
 interface HomePageProps {
   categories: any[];
   tools: Tool[];
+  loadedAt?: string;
+  isDataLoaded?: boolean;
+  error?: string;
 }
+
+// Import data directly at build time
+import { categories } from '../data/categories';
+import { tools } from '../data/tools';
+
+export const getStaticProps = async () => {
+  try {
+    // Data is already imported at the top
+    return {
+      props: {
+        categories,
+        tools,
+        loadedAt: new Date().toISOString(),
+        isDataLoaded: true
+      }
+    };
+  } catch (error: unknown) {
+    console.error('Error loading data:', error);
+    
+    // Type guard to check if error is an instance of Error
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : 'An unknown error occurred';
+    
+    // Return empty data to prevent build failures
+    return {
+      props: {
+        categories: [],
+        tools: [],
+        loadedAt: new Date().toISOString(),
+        isDataLoaded: false,
+        error: errorMessage
+      }
+    };
+  }
+};
 
 export default function HomePage({ categories = [], tools = [] }: HomePageProps) {
   const [search, setSearch] = useState("");
@@ -682,7 +721,7 @@ export default function HomePage({ categories = [], tools = [] }: HomePageProps)
         </div>
 
       {/* Ultra-Premium CSS Animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes gradient-x {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
